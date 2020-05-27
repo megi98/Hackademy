@@ -1,2 +1,4 @@
 db.sqlite3
 __pycache__/
+education.__pycache__/
+hackademy.__pycache__/
