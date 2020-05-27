@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from .validate_url import validator
 
 
 class Courses(models.Model):
@@ -36,3 +37,12 @@ class Tasks(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Solutions(models.Model):
+    task = models.ForeignKey(Tasks, on_delete=models.CASCADE)
+    date = models.DateTimeField(default=timezone.now)
+    url = models.URLField(validators=[validator])
+
+    def __str__(self):
+        return f'Solution for task {self.task}'
