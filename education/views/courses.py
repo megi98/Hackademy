@@ -3,3 +3,21 @@ from django.views.generic import CreateView
 from django.urls import reverse_lazy
 
 from education.models import Courses
+
+
+def list(request):
+    return render(request, 'courses/list.html', {'courses': Courses.objects.all()})
+
+
+def detail(request, course_id):
+    course = get_object_or_404(Courses, id=course_id)
+    return render(request, 'courses/detail.html', {'course': course})
+
+
+class CourseCreateView(CreateView):
+    model = Courses
+    fields = ['name', 'description', 'start_date', 'end_date']
+    template_name = 'courses/create.html'
+
+    def get_success_url(self, kwargs):
+        return reverse_lazy('education:courses:detail', kwargs={'course_id': self.object.id})
