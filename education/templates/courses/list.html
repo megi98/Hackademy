@@ -2,11 +2,24 @@
 <a href="{% url 'education:courses:create' %}">Add new</a>
 
 {% if courses %}
-<ul>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Start</th>
+        <th>End</th>
+        <th>Duration</th>
+    </tr>
     {% for course in courses %}
-    <li><a href="{% url 'education:courses:detail' course.id %}">{{ course.name }}</a></li>
+    <tr>
+        <td><a href="{% url 'education:courses:detail' course.id %}">{{ course.name }}</a></td>
+        <td>{{ course.description }}</td>
+        <td>{{ course.start_date }}</td>
+        <td>{{ course.end_date }}</td>
+        <td>{{ course.duration }}</td>
+    </tr>
     {% endfor %}
-</ul>
+</table>
 {% else %}
 <p><strong>No courses yet.</strong></p>
 {% endif %} {% endblock %}

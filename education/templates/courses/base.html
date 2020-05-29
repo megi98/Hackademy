@@ -1,3 +1,8 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+
 <a href="{% url 'education:index' %}">Home</a>
 <h1><a href="{% url 'education:courses:list' %}">Courses</a></h1>
 

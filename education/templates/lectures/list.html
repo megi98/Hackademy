@@ -2,11 +2,22 @@
 <a href="{% url 'education:lectures:create' %}">Add new</a>
 
 {% if lectures %}
-<ul>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Week</th>
+        <th>Course</th>
+        <th>Link</th>
+    </tr>
     {% for lecture in lectures %}
-    <li><a href="{% url 'education:lectures:detail' lecture.id %}">{{ lecture.name }}</a></li>
+    <tr>
+        <td><a href="{% url 'education:lectures:detail' lecture.id %}">{{ lecture.name }}</a></td>
+        <td>{{ lecture.week }}</td>
+        <td>{{ lecture.course }}</td>
+        <td>{{ lecture.url }}</td>
+    </tr>
     {% endfor %}
-</ul>
+</table>
 {% else %}
 <p><strong>No lectures yet.</strong></p>
 {% endif %} {% endblock %}
